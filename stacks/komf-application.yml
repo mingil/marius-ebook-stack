@@ -1,0 +1,102 @@
+# =============================================================================
+# 🤖 KOMF (Komga & Kavita Metadata Fetcher) - 한국어·글로벌 통합 최적화 설정 파일
+# 저장 경로: /volume1/docker/komf/config/application.yml
+# =============================================================================
+
+komga:
+  baseUri: ${KOMF_KOMGA_BASE_URI:http://komga:25600}
+  komgaUser: ${KOMF_KOMGA_USER:fauna035@gmail.com}
+  komgaPassword: ${KOMF_KOMGA_PASSWORD:YOUR_KOMGA_PASSWORD}
+  eventListener:
+    enabled: true
+    metadataLibraryFilter: []
+    metadataSeriesExcludeFilter: []
+  metadataUpdate:
+    default:
+      libraryType: MANGA
+      updateModes:
+        - API
+      aggregate: true
+      mergeTags: true
+      mergeGenres: true
+      bookCovers: true
+      seriesCovers: true
+      overrideExistingCovers: false
+      lockMetadata: false
+      postProcessing:
+        seriesTitle: true
+        seriesTitleLanguage: "ko"
+        alternativeSeriesTitles: true
+        alternativeSeriesTitleLanguages:
+          - "ko"
+          - "en"
+          - "ja"
+          - "ja-ro"
+        orderBooks: false
+        readingDirectionValue: null
+        languageValue: "ko"
+
+kavita:
+  baseUri: ${KOMF_KAVITA_BASE_URI:http://kavita:5000}
+  apiKey: ${KOMF_KAVITA_API_KEY:JR5SNjbYayxiZtzTgEIWOTfZ6Od3iyTa}
+  eventListener:
+    enabled: true
+    metadataLibraryFilter: []
+    metadataSeriesExcludeFilter: []
+  metadataUpdate:
+    default:
+      libraryType: MANGA
+      updateModes:
+        - API
+      aggregate: true
+      mergeTags: true
+      mergeGenres: true
+      bookCovers: true
+      seriesCovers: true
+      overrideExistingCovers: false
+      postProcessing:
+        seriesTitle: true
+        seriesTitleLanguage: "ko"
+        alternativeSeriesTitles: true
+        alternativeSeriesTitleLanguages:
+          - "ko"
+          - "en"
+          - "ja"
+        languageValue: "ko"
+
+metadataProviders:
+  malClientId: ""
+  comicVineApiKey: ""
+  defaultProviders:
+    mangaUpdates:
+      priority: 10
+      enabled: true
+      mediaType: MANGA
+    anilist:
+      priority: 20
+      enabled: true
+      mediaType: MANGA
+    mal:
+      priority: 30
+      enabled: false
+    bangumi:
+      priority: 40
+      enabled: true
+    nautiljon:
+      priority: 50
+      enabled: true
+    kodansha:
+      priority: 60
+      enabled: true
+    yenPress:
+      priority: 70
+      enabled: true
+    viz:
+      priority: 80
+      enabled: true
+
+database:
+  file: /config/database.sqlite
+
+server:
+  port: 8085
